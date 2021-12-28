@@ -1,0 +1,43 @@
+<h1>Profile</h1>
+
+<div class="row">
+  <div class="col s6">
+    <img
+      class="avatar"
+      src="https://scontent.fdnk4-1.fna.fbcdn.net/v/t1.6435-9/61454050_3230539463638236_2682335603248332800_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=9267fe&_nc_ohc=T4pekhx8V9sAX-6o7lp&_nc_ht=scontent.fdnk4-1.fna&oh=00_AT8eE9JALafxZowkZho1wwICAIwBqdT2j5JSqMBLNCYGFg&oe=61E7188D"
+      alt=""
+    />
+    <p>There is no Avatar</p>
+  </div>
+  <div class="col s6">
+    <form action="/profile" method="post">
+      <p>Your email: <strong>{{user.email}}</strong></p>
+      <div class="input-field">
+        <input
+          id="name"
+          name="name"
+          type="text"
+          class="validate"
+          required
+          value="{{user.name}}"
+        />
+        <label for="title">Your Name</label>
+        <span class="helper-text" data-error="name field can't be empty"></span>
+      </div>
+
+      <div class="file-field input-field">
+        <div class="btn">
+          <span>Avatar</span>
+          <input type="file" name="avatar" />
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" />
+        </div>
+      </div>
+
+      <input type="hidden" name="_csrf" value={{csrf}} />
+
+      <button type="submit" class="btn">Change</button>
+    </form>
+  </div>
+</div>
