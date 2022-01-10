@@ -4,6 +4,8 @@ const path = require("path");
 const csrf = require("csurf");
 const flash = require("connect-flash");
 const Handlebars = require("handlebars");
+const helmet = require("helmet");
+const compression = require("compression");
 const exphbs = require("express-handlebars");
 const {
   allowInsecurePrototypeAccess,
@@ -42,7 +44,7 @@ app.set("view engine", "hbs");
 app.set("views", "views");
 
 app.use(express.static(path.join(__dirname, "public")));
-app.use('/images',express.static(path.join(__dirname, "images")));
+app.use("/images", express.static(path.join(__dirname, "images")));
 app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
@@ -55,6 +57,23 @@ app.use(
 app.use(fileMiddleware.single("avatar"));
 app.use(csrf());
 app.use(flash());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+        "img-src": ["'self'", "https:"],
+        "script-src-elem": [
+          "'self'",
+          "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js",
+          "'unsafe-inline'",
+        ],
+      },
+    },
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+  })
+);
+app.use(compression());
 app.use(varMiddleware);
 app.use(userMiddleware);
 
