@@ -57,7 +57,7 @@ app.use(
 app.use(fileMiddleware.single("avatar"));
 app.use(csrf());
 app.use(flash());
-app.use(
+/* app.use(
   helmet({
     contentSecurityPolicy: {
       directives: {
@@ -70,9 +70,9 @@ app.use(
         ],
       },
     },
-    crossOriginResourcePolicy: { policy: "cross-origin" },
   })
-);
+); */
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(compression());
 app.use(varMiddleware);
 app.use(userMiddleware);

@@ -1,7 +1,7 @@
 {
   "name": "node-express",
   "version": "1.0.0",
-  "description": "",
+  "description": "nodeJS-shop",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@handlebars/allow-prototype-access": "^1.0.3",
+    "@sendgrid/mail": "^7.6.0",
     "bcryptjs": "^2.4.3",
     "compression": "^1.7.4",
     "connect-flash": "^0.1.1",
